@@ -11,9 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Downgrade Framer Motion and install dependencies
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies with Framer Motion v6
         run: |
-          npm install framer-motion@5.6.0 --legacy-peer-deps
+          npm install framer-motion@6 --legacy-peer-deps
           npm ci --legacy-peer-deps
       - name: Build
         run: npm run build
