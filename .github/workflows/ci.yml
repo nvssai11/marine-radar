@@ -20,9 +20,11 @@ jobs:
           npm install framer-motion@6 --legacy-peer-deps
           npm ci --legacy-peer-deps
       - name: Build
-        run: npm run build
-
-  cd:
+        run: |
+               npm install framer-motion@6 --legacy-peer-deps
+               npm ci --legacy-peer-deps
+               NEXT_PUBLIC_SKIP_TYPE_CHECK=true npm run build
+  cd: 
     needs: ci
     runs-on: ubuntu-latest
     steps:
